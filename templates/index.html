@@ -1,0 +1,169 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Category Predictor</title>
+    <!-- Add Material-UI CDN -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mui/system/css/mui.css"
+    />
+  </head>
+  <body
+    style="
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    "
+  >
+    <div
+      style="
+        width: 80%;
+        max-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <h1 style="text-align: center; margin-bottom: 20px; color: #1976d2">
+        Resume Category Predictor
+      </h1>
+
+      <form
+        action="/analyze"
+        method="post"
+        enctype="multipart/form-data"
+        onsubmit="return validateForm()"
+      >
+        <!-- Resume Section -->
+        <div style="margin-bottom: 20px">
+          <label for="resume" style="color: #333"
+            >Upload Resume: (only English language and PDF format
+            accepted)</label
+          >
+          <input
+            type="file"
+            name="resume"
+            accept=".pdf"
+            onchange="validateFileType(this)"
+            style="
+              width: 100%;
+              margin-top: 8px;
+              padding: 8px;
+              box-sizing: border-box;
+            "
+          />
+          <span style="font-size: 14px; color: #555"
+            >Or Enter Resume Text:</span
+          >
+          <textarea
+            name="resume_text"
+            rows="4"
+            style="
+              width: 100%;
+              margin-top: 8px;
+              padding: 8px;
+              box-sizing: border-box;
+            "
+          ></textarea>
+        </div>
+
+        <!-- Job Description Section -->
+        <div style="margin-bottom: 20px">
+          <label for="job_desc" style="color: #333"
+            >Upload Job Description: (only English language and PDF format
+            accepted)</label
+          >
+          <input
+            type="file"
+            name="job_desc"
+            accept=".pdf"
+            onchange="validateFileType(this)"
+            style="
+              width: 100%;
+              margin-top: 8px;
+              padding: 8px;
+              box-sizing: border-box;
+            "
+          />
+          <span style="font-size: 14px; color: #555"
+            >Or Enter Job Description Text:</span
+          >
+          <textarea
+            name="job_desc_text"
+            rows="4"
+            style="
+              width: 100%;
+              margin-top: 8px;
+              padding: 8px;
+              box-sizing: border-box;
+            "
+          ></textarea>
+        </div>
+
+        <!-- Analyze Button -->
+        <div style="text-align: center">
+          <button
+            style="
+              background-color: #1976d2;
+              color: #fff;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            "
+          >
+            Analyze
+          </button>
+        </div>
+      </form>
+
+      <script>
+        function validateFileType(input) {
+          const allowedExtensions = /(\.pdf)$/i;
+          if (!allowedExtensions.test(input.value)) {
+            alert('Please upload files in PDF format.');
+            input.value = '';
+          }
+        }
+
+        function validateForm() {
+          const resumeFile = document.getElementsByName('resume')[0];
+          const jobDescFile = document.getElementsByName('job_desc')[0];
+
+          if (
+            !resumeFile.value &&
+            !document.getElementsByName('resume_text')[0].value
+          ) {
+            alert('Please upload a resume file or enter resume text.');
+            return false;
+          }
+
+          if (
+            !jobDescFile.value &&
+            !document.getElementsByName('job_desc_text')[0].value
+          ) {
+            alert(
+              'Please upload a job description file or enter job description text.'
+            );
+            return false;
+          }
+
+          return true;
+        }
+      </script>
+    </div>
+  </body>
+</html>

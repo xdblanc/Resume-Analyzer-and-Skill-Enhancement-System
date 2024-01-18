@@ -1,0 +1,70 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Result</title>
+    <!-- Add Material-UI CDN -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mui/material@5.11.0/dist/css/base/roboto-font.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mui/material@5.11.0/dist/css/standard/standard.css"
+    />
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .content {
+        padding: 16px;
+        max-width: 600px;
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>Prediction Result</h1>
+      <div>
+        <p>Predicted Category: <strong>{{ predicted_category }}</strong></p>
+        <p>
+          Cosine Similarity with Job Description:
+          <strong>{{ similarity }}</strong>
+        </p>
+        <p>Resume Score: <strong>{{ result_score }}</strong></p>
+        <p>Sentiment rating: <strong>{{ sentiment_result }}</strong></p>
+        <p>Sentiment analysis and value: <strong>{{ senti }}</strong></p>
+      </div>
+    </div>
+
+    <!-- Add Material-UI script -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@mui/system@5.11.0/dist/system/system.esm.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@mui/material@5.11.0/dist/material/material.esm.js"
+    ></script>
+  </body>
+</html>
